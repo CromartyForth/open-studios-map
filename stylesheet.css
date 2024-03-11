@@ -2,7 +2,28 @@ body {
     padding:0;
     margin:0;
 }
+
 html, body, #map {
     height: 100%;
     width: 100vw;
+}
+
+#map {
+    z-index: 1;
+}
+
+.container {
+    position: relative;
+    height:100%;
+    width: 100vw;
+}
+
+.overlay {     
+    width: 50px;
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    bottom: 80%;      
+    background-color: rgba(255, 50, 50, 0.2);
+    z-index: 2;    
 }
