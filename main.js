@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function(){
     var aesthetics = L.marker([52.446264, -1.887594]).addTo(map);
         aesthetics.bindPopup("<h1>Art & Aesthetics</h1><p>Known locally for being a creative and bohemian suburb, Seventh Circle radiate all the characteristics of this iconic area. Making art accessible is a passion at Seventh Circle, it is a universal language that everyone should be able to enjoy and appreciate. Whether you are simply browsing, looking for a unique piece to decorate your home, a gift for a loved one , or a way to express yourself, there is something for everyone at Seventh Circle.</p> <input type='image' id='imgButton' src='./images/Seventh-Circle-2023-08-20.jpg' width=100%>");
 
-
+    
     // clickable button
     const div = document.createElement("div");
     div.innerHTML = "<br>'nametemplate'<br>";
@@ -41,15 +41,31 @@ document.addEventListener("DOMContentLoaded", function(){
     const button = document.createElement("button");
     button.innerHTML = "more...";
     button.id = "button1";
+
     button.onclick = function(e) {
-        console.log(e.target.id);
+        // create custome openArtist event
+        const event = new CustomEvent("openArtist", {
+            bubbles: true, 
+            detail: {
+                artist: e.target.id
+            }
+        });
+        button1.dispatchEvent(event);
+
+        //e.target.innerHTML = "clicked"
+        //console.log(e.target.id);
     }
     div.appendChild(button);
 
     var clickable = L.marker([52.43821, -1.885604]).addTo(map);
         clickable.bindPopup(div);
 
+    //event handler
+    document.addEventListener("openArtist", function(event) {console.log(event.detail.artist);});
         
+
+
+
     // location not found set view to bounds
     map.on('locationerror', onLocationError);
 
@@ -84,12 +100,6 @@ document.addEventListener("DOMContentLoaded", function(){
         
        map.panTo(e.latlng);
     }
-
-    // popup image button
-    const imgButton = document.getElementById("imgButton");
-    imgButton.addEventListener('click', function(){
-        console.log("click!");
-    });
 })
 
 
