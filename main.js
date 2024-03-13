@@ -61,7 +61,11 @@ document.addEventListener("DOMContentLoaded", function(){
         clickable.bindPopup(div);
 
     //event handler
-    document.addEventListener("openArtist", function(event) {console.log(event.detail.artist);});
+    document.addEventListener("openArtist", function(event) {openArtist(event);});
+
+    function openArtist(event){
+        console.log(event.detail.artist);
+    }
         
 
 
@@ -81,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function(){
         var radius = e.accuracy;
         if (radius > 10) radius = 10;
 
-        L.marker(e.latlng).addTo(map).bindPopup("You are here!").openPopup();
+        L.marker(e.latlng).addTo(map).bindPopup("You are here!");
 
         L.circle(e.latlng, radius).addTo(map)
     }
