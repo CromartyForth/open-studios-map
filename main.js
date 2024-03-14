@@ -4,6 +4,15 @@ document.addEventListener("DOMContentLoaded", function(){
     // map 
     var map = L.map('map')//.setView([52.446483, -1.888168], 18);
     console.log(map.locate({setView: true, minZoom: 1, maxZoom: 17}));
+    console.log("Map size: " + map.getSize());
+    var mapSize = map.getSize();
+    
+    // adjust the width of popup on small widths so there is room to scroll the screen
+    var popupMaxWidth = Math.trunc(mapSize.x * 0.8);
+    if (popupMaxWidth > 300){
+        popupMaxWidth = 300;
+    }
+    console.log(popupMaxWidth);
     
     
     var watercolor = L.tileLayer('https://watercolormaps.collection.cooperhewitt.org/tile/watercolor/{z}/{x}/{y}.jpg', {
@@ -31,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function(){
         moseleyExchange.bindPopup("<h1>Moseley Exchange</h1><p>Birmingham’s first coworking space, in the heart of Moseley Village.</P><img src='./images/FOR-WEB-open-studios-2022-6.jpg' width=100%>");
 
     var aesthetics = L.marker([52.446264, -1.887594]).addTo(map);
-        aesthetics.bindPopup("<h1>Art & Aesthetics</h1><p>Known locally for being a creative and bohemian suburb, Seventh Circle radiate all the characteristics of this iconic area. Making art accessible is a passion at Seventh Circle, it is a universal language that everyone should be able to enjoy and appreciate. Whether you are simply browsing, looking for a unique piece to decorate your home, a gift for a loved one , or a way to express yourself, there is something for everyone at Seventh Circle.</p> <input type='image' id='imgButton' src='./images/Seventh-Circle-2023-08-20.jpg' width=100%>");
+        aesthetics.bindPopup("<h1>Art & Aesthetics</h1><p>Known locally for being a creative and bohemian suburb, Seventh Circle radiate all the characteristics of this iconic area. Making art accessible is a passion at Seventh Circle, it is a universal language that everyone should be able to enjoy and appreciate. Whether you are simply browsing, looking for a unique piece to decorate your home, a gift for a loved one , or a way to express yourself, there is something for everyone at Seventh Circle.</p> <input type='image' id='imgButton' src='./images/Seventh-Circle-2023-08-20.jpg' width=100%>", {maxWidth: popupMaxWidth});
 
     
     // clickable button
@@ -58,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function(){
     div.appendChild(button);
 
     var clickable = L.marker([52.43821, -1.885604]).addTo(map);
-        clickable.bindPopup(div);
+        clickable.bindPopup(div, {maxWidth: 100});
 
     //event handler
     document.addEventListener("openArtist", function(event) {openArtist(event);});
