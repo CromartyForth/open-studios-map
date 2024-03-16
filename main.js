@@ -6,9 +6,10 @@ document.addEventListener("DOMContentLoaded", function(){
     console.log(map.locate({setView: true, minZoom: 1, maxZoom: 17}));
     console.log("Map size: " + map.getSize());
     var mapSize = map.getSize();
+    const popupPadding = 47
     
     // adjust the width of popup on small widths so there is room to scroll the screen
-    var popupMaxWidth = Math.trunc(mapSize.x * 0.8);
+    var popupMaxWidth = Math.trunc(mapSize.x * 0.8 - popupPadding);
     if (popupMaxWidth > 300){
         popupMaxWidth = 300;
     }
@@ -108,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function(){
         
         popup
             .setLatLng(e.latlng)
-            .setContent("Clicked at " + e.latlng.toString())
+            .setContent("Clicked at " + e.latlng.toString() + popupMaxWidth)
             .openOn(map);
         
        map.panTo(e.latlng);
