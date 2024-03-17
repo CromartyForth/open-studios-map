@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function(){
     button.id = "button1";
 
     button.onclick = function(e) {
-        // create custome openArtist event
+        // create custom openArtist event
         const event = new CustomEvent("openArtist", {
             bubbles: true, 
             detail: {
@@ -75,6 +75,9 @@ document.addEventListener("DOMContentLoaded", function(){
 
     function openArtist(event){
         console.log(event.detail.artist);
+        console.log(clickable.closePopup());
+        // resize map
+        
     }
         
 
