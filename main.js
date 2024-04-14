@@ -6,43 +6,32 @@ document.addEventListener("DOMContentLoaded", function(){
     console.log(map.locate({setView: true, minZoom: 1, maxZoom: 17}));
     console.log("Map size: " + map.getSize());
     var mapSize = map.getSize();
-    const popupPadding = 47
-    
+
     // adjust the width of popup on small widths so there is room to scroll the screen
+    const popupPadding = 47;
     var popupMaxWidth = Math.trunc(mapSize.x * 0.8 - popupPadding);
     if (popupMaxWidth > 300){
         popupMaxWidth = 300;
     }
     console.log(popupMaxWidth);
     
-    
+    // the map tiles
     var watercolor = L.tileLayer('https://watercolormaps.collection.cooperhewitt.org/tile/watercolor/{z}/{x}/{y}.jpg', {
         maxZoom: 17,
         attribution: '© OpenStreetMap'
     }).addTo(map);
 
-    /*
-    var Stadia_StamenTonerLabels = L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_toner_labels/{z}/{x}/{y}{r}.{ext}', {
-        minZoom: 0,
-        maxZoom: 17,
-        attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://www.stamen.com/" target="_blank">Stamen Design</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        ext: 'png'
-    }).addTo(map);
-    
-
-    var Stadia_OSMBright = L.tileLayer('https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.{ext}', {
-	    minZoom: 0,
-	    maxZoom: 20,
-	    attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-	    ext: 'png'}).addTo(map);
-    */
-    
+  
     var moseleyExchange = L.marker([52.445947, -1.889369]).addTo(map);
         moseleyExchange.bindPopup("<h1>Moseley Exchange</h1><p>Birmingham’s first coworking space, in the heart of Moseley Village.</P><img src='./images/FOR-WEB-open-studios-2022-6.jpg' width=100%>");
 
     var aesthetics = L.marker([52.446264, -1.887594]).addTo(map);
-        aesthetics.bindPopup("<h1>Art & Aesthetics</h1><p>Known locally for being a creative and bohemian suburb, Seventh Circle radiate all the characteristics of this iconic area. Making art accessible is a passion at Seventh Circle, it is a universal language that everyone should be able to enjoy and appreciate. Whether you are simply browsing, looking for a unique piece to decorate your home, a gift for a loved one , or a way to express yourself, there is something for everyone at Seventh Circle.</p> <input type='image' id='imgButton' src='./images/Seventh-Circle-2023-08-20.jpg' width=100%>", {maxWidth: popupMaxWidth});
+        aesthetics.bindPopup("<h1>Art & Aesthetics</h1><p>Known locally for being a creative and bohemian suburb, Seventh Circle radiate all the characteristics of this iconic area. Making art accessible is a passion at Seventh Circle, it is a universal language that everyone should be able to enjoy and appreciate. Whether you are simply browsing, looking for a unique piece to decorate your home, a gift for a loved one , or a way to express yourself, there is something for everyone at Seventh Circle.</p> <input type='image' id='imgButton' src='./images/Seventh-Circle-2023-08-20.jpg' width=100%>", {maxWidth: popupMaxWidth, keepInView: true});
 
+    var openStatic = L.marker([52.438655, -1.885121]).addTo(map);
+        openStatic.on('click', function(e) {
+            console.log("click");
+        });
     
     // clickable button
     const div = document.createElement("div");
@@ -61,10 +50,8 @@ document.addEventListener("DOMContentLoaded", function(){
             }
         });
         button1.dispatchEvent(event);
-
-        //e.target.innerHTML = "clicked"
-        //console.log(e.target.id);
     }
+
     div.appendChild(button);
 
     var clickable = L.marker([52.43821, -1.885604]).addTo(map);
@@ -76,8 +63,7 @@ document.addEventListener("DOMContentLoaded", function(){
     function openArtist(event){
         console.log(event.detail.artist);
         console.log(clickable.closePopup());
-        // resize map
-        
+        // resize map 
     }
         
 
@@ -104,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     
-    // map on click
+    // map on click gives position
     var popup = L.popup();
     map.on('click', onMapClick);
 
@@ -117,6 +103,7 @@ document.addEventListener("DOMContentLoaded", function(){
         
        map.panTo(e.latlng);
     }
+    
 })
 
 
