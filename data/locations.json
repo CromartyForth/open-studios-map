@@ -4,7 +4,7 @@
         "type": "Feature",
         "geometry": {
             "type": "Point",
-            "coordinates": [52.445947, -1.889369]
+            "coordinates": [-1.889369, 52.445947]
         },
         "properties": {
             "title": "Moseley Exchange",
@@ -26,10 +26,10 @@
         "type": "Feature",
         "geometry": {
             "type": "Point",
-            "coordinates": [52.446264, -1.887594]
+            "coordinates": [-1.887594, 52.446264]
         },
         "properties": {
-            "title": "Moseley Exchange",
+            "title": "Seventh Circle",
             "artists": [{
                 "name":"Imogen Morris",
                 "image":"DSC_5953-min.jpg",
@@ -48,7 +48,7 @@
         "type": "Feature",
         "geometry": {
             "type": "Point",
-            "coordinates": [52.447856, -1.887739]
+            "coordinates": [-1.887739, 52.447856]
         },
         "properties": {
             "title": "Sabrina Nolan Jaques",

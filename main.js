@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function(){
     if (popupMaxWidth > 300){
         popupMaxWidth = 300;
     }
+
     console.log(popupMaxWidth);
     
     // the map tiles
@@ -21,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function(){
         attribution: '© OpenStreetMap'
     }).addTo(map);
 
-  
+    /*
     var moseleyExchange = L.marker([52.445947, -1.889369]).addTo(map);
         moseleyExchange.bindPopup("<h1>Moseley Exchange</h1><p>Birmingham’s first coworking space, in the heart of Moseley Village.</P><img src='./images/FOR-WEB-open-studios-2022-6.jpg' width=100%>");
 
@@ -32,7 +33,8 @@ document.addEventListener("DOMContentLoaded", function(){
         openStatic.on('click', function(e) {
             console.log("click");
         });
-    
+    */
+
     // clickable button
     const div = document.createElement("div");
     div.innerHTML = "<br>'nametemplate'<br>";
@@ -103,7 +105,39 @@ document.addEventListener("DOMContentLoaded", function(){
         
        map.panTo(e.latlng);
     }
+
+
+    // geojason test
+    function onEachFeature(feature, layer) {
+        // does this feature have a property named title
+        if (feature.properties.title) {
+            console.log(`Let's add ${feature.properties.title} to the map!`);
+            layer.bindPopup(feature.properties.title);
+        }
+    }
+
+    fetch("http://localhost:5500/data/locations.json")
+        .then((response) => {
+            if (response.status === 200) {
+                return response.json();
+            } else {
+                throw new Error("Something went wrong on API server");
+            }
+        })
+        .then((data) => {
+            console.debug(data);
+            L.geoJSON(data, {
+                onEachFeature: onEachFeature
+            }).addTo(map);
+        })
+        .catch((error) => {
+            console.error(error);
+        });
     
+    //.then((json) => console.log(`Artist Name: ${json.features[0].properties.artists[0].name}`));
+
+    //console.log("Location Data: " + json);
+    console.log("End");
 })
 
 
