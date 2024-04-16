@@ -105,23 +105,28 @@ document.addEventListener("DOMContentLoaded", function(){
             .openOn(map);
         
        map.panTo(e.latlng);
+       console.log(e);
     }
 
 
     // geojason on each function
     function onEachFeature(feature, layer) {
         // does this feature have a property named title
-        var title = feature.properties.title;
+        const title = feature.properties.title;
+
+        // tag ids must be contiguous
+        const id = title.replace(/\s+/g, "");
+        
         if (title) {
             console.log(`Let's add ${title} to the map!`);
 
             var artists = feature.properties.artists;
             console.log(artists);
-            var carousell = "";
+            var carousel = "";
             
             // add each artists card to carousell
             for(var i = 0; i < artists.length; i++){
-                carousell += `
+                carousel += `
                     <div class="image${i === 0 ? " active": ""}">
                         <img src="./images/${artists[i].image}"/>
                     </div>
@@ -130,12 +135,12 @@ document.addEventListener("DOMContentLoaded", function(){
             
             // construct the popup html
             var popupContent = `
-                <div id=${title} class="popup">
+                <div id=${id} class="popup">
                     <h1>${title}</h1>
-                    <div class="carousell">
-                        ${carousell}
+                    <div class="carousel">
+                        ${carousel}
                     </div>
-                    </div class="cycle">
+                    <div class="cycle">
                         <a href="#" class="prev">Previous</a>
                         <a href="#" class="next">Next</a>
                     </div>
@@ -145,12 +150,6 @@ document.addEventListener("DOMContentLoaded", function(){
             layer.bindPopup(popupContent);
         }
     }
-    // event listeners for popup previous and next buttons
-    
-
-
-
-
 
     // get geoJson data
     fetch("http://localhost:5500/data/locations.json")
@@ -170,8 +169,27 @@ document.addEventListener("DOMContentLoaded", function(){
         .catch((error) => {
             console.error(error);
         });
-    console.log("End Fetch");
+    
+
+    // event listeners for popup previous and next buttons
+    // popup open event. What is in it?
+    map.on('popupopen', function(event){
+
+        // properties of popup
+        var title = event.popup._source.feature.properties.title;
+        var Id = title.replace(/\s+/g, "");
+        console.log(Id);
+        document.getElementById(Id).addEventListener("click", popupClick);
+    })
+
+    function popupClick(event) {
+        console.log(event.target.className);
+        console.log(event);
+    }
+
 })
+    
+    
 
 
 

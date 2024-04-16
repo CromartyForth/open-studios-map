@@ -29,11 +29,14 @@ html, body, #map {
 }
 
 .popup { text-align: center; }
-.popup .carousell .image { display:none; }
-.popup .carousell .image.active { display:block; }
-.popup .carousell .image img { width:100%; }
+.popup .carousel .image { display: none; }
+.popup .carousel .image.active { display: block; }
+.popup .carousel .image img { width: 100%; }
 
-.popup .cycle { padding: 10px 0 20px; }
+.popup .cycle { 
+    padding: 10px 0 20px;
+    width: 100%;
+}
 
 .popup .cycle a.prev { float:left; }
 .popup .cycle a.next { float:right; }
