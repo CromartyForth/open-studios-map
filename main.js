@@ -16,12 +16,13 @@ document.addEventListener("DOMContentLoaded", function(){
 
     console.log(popupMaxWidth);
     
+    /*
     // the map tiles
     var watercolor = L.tileLayer('https://watercolormaps.collection.cooperhewitt.org/tile/watercolor/{z}/{x}/{y}.jpg', {
         maxZoom: 17,
         attribution: '© OpenStreetMap'
     }).addTo(map);
-
+    */
     /*
     var moseleyExchange = L.marker([52.445947, -1.889369]).addTo(map);
         moseleyExchange.bindPopup("<h1>Moseley Exchange</h1><p>Birmingham’s first coworking space, in the heart of Moseley Village.</P><img src='./images/FOR-WEB-open-studios-2022-6.jpg' width=100%>");
@@ -107,15 +108,51 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
 
-    // geojason test
+    // geojason on each function
     function onEachFeature(feature, layer) {
         // does this feature have a property named title
-        if (feature.properties.title) {
-            console.log(`Let's add ${feature.properties.title} to the map!`);
-            layer.bindPopup(feature.properties.title);
+        var title = feature.properties.title;
+        if (title) {
+            console.log(`Let's add ${title} to the map!`);
+
+            var artists = feature.properties.artists;
+            console.log(artists);
+            var carousell = "";
+            
+            // add each artists card to carousell
+            for(var i = 0; i < artists.length; i++){
+                carousell += `
+                    <div class="image${i === 0 ? " active": ""}">
+                        <img src="./images/${artists[i].image}"/>
+                    </div>
+                `
+            }
+            
+            // construct the popup html
+            var popupContent = `
+                <div id=${title} class="popup">
+                    <h1>${title}</h1>
+                    <div class="carousell">
+                        ${carousell}
+                    </div>
+                    </div class="cycle">
+                        <a href="#" class="prev">Previous</a>
+                        <a href="#" class="next">Next</a>
+                    </div>
+                </div>
+                
+            `
+            layer.bindPopup(popupContent);
         }
     }
+    // event listeners for popup previous and next buttons
+    
 
+
+
+
+
+    // get geoJson data
     fetch("http://localhost:5500/data/locations.json")
         .then((response) => {
             if (response.status === 200) {
@@ -133,11 +170,7 @@ document.addEventListener("DOMContentLoaded", function(){
         .catch((error) => {
             console.error(error);
         });
-    
-    //.then((json) => console.log(`Artist Name: ${json.features[0].properties.artists[0].name}`));
-
-    //console.log("Location Data: " + json);
-    console.log("End");
+    console.log("End Fetch");
 })
 
 

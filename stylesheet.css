@@ -27,3 +27,13 @@ html, body, #map {
     background-color: rgba(255, 50, 50, 0.2);
     z-index: 2;    
 }
+
+.popup { text-align: center; }
+.popup .carousell .image { display:none; }
+.popup .carousell .image.active { display:block; }
+.popup .carousell .image img { width:100%; }
+
+.popup .cycle { padding: 10px 0 20px; }
+
+.popup .cycle a.prev { float:left; }
+.popup .cycle a.next { float:right; }
