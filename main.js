@@ -179,15 +179,51 @@ document.addEventListener("DOMContentLoaded", function(){
         var title = event.popup._source.feature.properties.title;
         var Id = title.replace(/\s+/g, "");
         console.log(Id);
-        document.getElementById(Id).addEventListener("click", popupClick);
+        document.getElementById(Id).addEventListener("click", (event) => popupClick(event, Id));
     })
 
-    function popupClick(event) {
-        console.log(event.target.className);
-        console.log(event);
-    }
+    function popupClick(event, Id) {
+        
+        const button = event.target.className
+        if(button === "prev"){
+            console.log(button + " pressed")
 
+            // get the active image
+            const carousel = document.getElementsByClassName("carousel");
+            const images = document.querySelector("div.image.active");
+
+            if (images.previousElementSibling == null){
+                console.log("There's nothing here");
+                images.classList.remove("active");
+                carousel[0].lastElementChild.classList.add("active");
+            }
+            else {
+                images.classList.remove("active");
+                images.previousElementSibling.classList.add("active");
+            }
+
+        } else if(button === "next"){
+            console.log(button + " pressed")
+
+            // get the active image
+            const carousel = document.getElementsByClassName("carousel");
+            const images = document.querySelector("div.image.active");
+
+            if (images.nextElementSibling == null){
+                console.log("There's nothing here");
+                images.classList.remove("active");
+                carousel[0].firstElementChild.classList.add("active");
+            } else {
+                images.classList.remove("active");
+                images.nextElementSibling.classList.add("active");
+            }
+
+        }
+    }
+        
 })
+
+
     
     
 
