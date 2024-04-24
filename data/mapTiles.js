@@ -6,6 +6,11 @@
         ext: 'png'
     }).addTo(map);
     
+    var watercolor = L.tileLayer('https://watercolormaps.collection.cooperhewitt.org/tile/watercolor/{z}/{x}/{y}.jpg', {
+        maxZoom: 17,
+        attribution: '© OpenStreetMap'
+    }).addTo(map);
+
 
     var Stadia_OSMBright = L.tileLayer('https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.{ext}', {
 	    minZoom: 0,
