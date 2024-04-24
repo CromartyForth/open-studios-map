@@ -1,0 +1,82 @@
+{
+    "type": "FeatureCollection",
+    "features": [{
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [-1.889369, 52.445947]
+        },
+        "properties": {
+            "title": "Moseley Exchange",
+            "artists": [{
+                "name":"Marta Stolarska",
+                "image":"Winter-in-the-village.jpg",
+                "text":"Marta Stolarska, (b. 1988, Poland) works and resides in Birmingham, UK. Following her studies in Interior Architecture, the artist embarked on a quest to channel her voice. Her passion for creation led her to experiment with various artistic forms, ranging from crafting jewellery and cross-stitch artworks, to knitting for loved ones and engaging in interior design."
+            },{
+                "name":"Cinzia Scafetta",
+                "image":"2-Sq-BlueBells.jpg",
+                "text":"Originally from a small town on the Adriatic coast of Italy, Cinzia has a musical background. Her art is inspired by colour and textural nuances from within musical harmonies, diverse vocal timbres and the inflections of language. She uses the beauty and simplicity of music and language as she paints, revealing emotions and memories through her paintbrush."
+            },{
+                "name":"Gabrielle Gavin",
+                "image":"IMG_0604-1.jpeg",
+                "text":"Playful, expressive contemporary paintings created with passion for the space you love. Expressive , non objective and impressionistic works available in oil, acrylic and mixed media."
+            },{
+                "name":"Hannah Leach",
+                "image":"wtf.jpg",
+                "text":"Versatile landscape and portrait artist selling original art and prints."
+            }]
+        }
+    },{
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [-1.887594, 52.446264]
+        },
+        "properties": {
+            "title": "Seventh Circle",
+            "artists": [{
+                "name":"Imogen Morris",
+                "image":"DSC_5953-min.jpg",
+                "text":"Imogen's practice challenges the boundaries between craft and fine art, by putting a contemporary spin on thread as a material that we can view in both fine art and craft spaces. Imogen sees thread as her pencil or paintbrush; exploring the versatility of thread, in ways that mean it intrudes into other mediums. Imogen pushes, pulls and stretch the line of thread to draw. She builds up layers in colour to create form, light, and shadow, and morphs thread into tangible, 3D forms to push the work into the sculptural realm."
+            },{
+                "name":"Mitch Schofield",
+                "image":"IMG_6882.jpeg",
+                "text":"Mitch Schofield will be painting “Live with Fire” demonstrating a 2000 year old technique known as Encaustic. Mixing art and alchemy, she builds up layers using beeswax, tree resin and pigments as paint. Adding fire fuses the layers together. Her work is tactile, unusual and filled with light, depth and intrigue."
+            },{
+                "name":"Belle Andrews",
+                "image":"Icebergs-in-the-mist-SOLD..jpg",
+                "text":"Belle is a self-taught contemporary artist working mainly in acrylic paint and oil pastels.  Belle uses a process of building up and scraping back layers of paint to explore colour and texture. The process finds and loses images and shapes as the layers are defined. She wants to draw the eye in to see another world where nobody views the same thing.  Belle is represented by Seventh Circle – Artworks & Aesthetics. An exciting, young vibrant gallery in the heart of Moseley, representing many wonderful modern artists."
+            }]
+        }      
+    },{
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [-1.887739, 52.447856]
+        },
+        "properties": {
+            "title": "Sabrina Nolan Jaques",
+            "artists": [{
+                "name":"Sabrina Nolan Jaques",
+                "image":"IMG_1154.jpg",
+                "text":"Sabrina Nolan Jaques is an artist based in the West Midlands, England. Taking inspiration from the world around her, her art manages to capture the energy and life of any subject she paints. Using acrylics as her preferred medium, her brushstrokes are enthusiastic and lively, as she believes when creating art “You should enjoy the process.”"
+            }]
+        }
+        
+             
+    },{
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [-1.882203, 52.443743]
+        },
+        "properties": {
+            "title": "Steph Evans",
+            "artists": [{
+                "name":"Steph Evans",
+                "image":"FullSizeRender.jpg",
+                "text":"Mainly working in acrylics on canvas or mixed media. Often taking commissions for pet portraits, Steph enjoys using colour in a bold, sometimes experimental way."
+            }]
+        }      
+    }]
+}
