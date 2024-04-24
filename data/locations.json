@@ -20,6 +20,10 @@
                 "name":"Gabrielle Gavin",
                 "image":"IMG_0604-1.jpeg",
                 "text":"Playful, expressive contemporary paintings created with passion for the space you love. Expressive , non objective and impressionistic works available in oil, acrylic and mixed media."
+            },{
+                "name":"Hannah Leach",
+                "image":"wtf.jpg",
+                "text":"Versatile landscape and portrait artist selling original art and prints."
             }]
         }
     },{
@@ -57,6 +61,22 @@
                 "image":"IMG_1154.jpg",
                 "text":"Sabrina Nolan Jaques is an artist based in the West Midlands, England. Taking inspiration from the world around her, her art manages to capture the energy and life of any subject she paints. Using acrylics as her preferred medium, her brushstrokes are enthusiastic and lively, as she believes when creating art “You should enjoy the process.”"
             }]
-        }     
+        }
+        
+             
+    },{
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [-1.882203, 52.443743]
+        },
+        "properties": {
+            "title": "Steph Evans",
+            "artists": [{
+                "name":"Steph Evans",
+                "image":"FullSizeRender.jpg",
+                "text":"Mainly working in acrylics on canvas or mixed media. Often taking commissions for pet portraits, Steph enjoys using colour in a bold, sometimes experimental way."
+            }]
+        }      
     }]
 }

@@ -25,7 +25,8 @@ html, body, #map {
     right: 2%;
     bottom: 80%;      
     background-color: rgba(255, 50, 50, 0.2);
-    z-index: 2;    
+    z-index: 2;
+    display: none;    
 }
 
 .popup { text-align: center; }
@@ -40,3 +41,13 @@ html, body, #map {
 
 .popup .cycle a.prev { float:left; }
 .popup .cycle a.next { float:right; }
+
+.popup h1 {margin-bottom: 0.1em;}
+.popup h4 {
+    margin-top: 0.1em;
+    color: rgb(119, 119, 119);
+}
+
+#artistText {
+    text-align: left;
+}

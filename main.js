@@ -7,72 +7,23 @@ document.addEventListener("DOMContentLoaded", function(){
     console.log("Map size: " + map.getSize());
     var mapSize = map.getSize();
 
-    // adjust the width of popup on small widths so there is room to scroll the screen
+    // adjust the width of popup on small widths so there is room to scroll the screen (Only my screen size so far)
     const popupPadding = 47;
     var popupMaxWidth = Math.trunc(mapSize.x * 0.8 - popupPadding);
     if (popupMaxWidth > 300){
         popupMaxWidth = 300;
     }
-
-    console.log(popupMaxWidth);
+    //console.log(popupMaxWidth);
     
-    /*
+    
     // the map tiles
     var watercolor = L.tileLayer('https://watercolormaps.collection.cooperhewitt.org/tile/watercolor/{z}/{x}/{y}.jpg', {
         maxZoom: 17,
         attribution: '© OpenStreetMap'
     }).addTo(map);
-    */
-    /*
-    var moseleyExchange = L.marker([52.445947, -1.889369]).addTo(map);
-        moseleyExchange.bindPopup("<h1>Moseley Exchange</h1><p>Birmingham’s first coworking space, in the heart of Moseley Village.</P><img src='./images/FOR-WEB-open-studios-2022-6.jpg' width=100%>");
+    
 
-    var aesthetics = L.marker([52.446264, -1.887594]).addTo(map);
-        aesthetics.bindPopup("<h1>Art & Aesthetics</h1><p>Known locally for being a creative and bohemian suburb, Seventh Circle radiate all the characteristics of this iconic area. Making art accessible is a passion at Seventh Circle, it is a universal language that everyone should be able to enjoy and appreciate. Whether you are simply browsing, looking for a unique piece to decorate your home, a gift for a loved one , or a way to express yourself, there is something for everyone at Seventh Circle.</p> <input type='image' id='imgButton' src='./images/Seventh-Circle-2023-08-20.jpg' width=100%>", {maxWidth: popupMaxWidth, keepInView: true});
-
-    var openStatic = L.marker([52.438655, -1.885121]).addTo(map);
-        openStatic.on('click', function(e) {
-            console.log("click");
-        });
-    */
-
-    // clickable button
-    const div = document.createElement("div");
-    div.innerHTML = "<br>'nametemplate'<br>";
-
-    const button = document.createElement("button");
-    button.innerHTML = "more...";
-    button.id = "button1";
-
-    button.onclick = function(e) {
-        // create custom openArtist event
-        const event = new CustomEvent("openArtist", {
-            bubbles: true, 
-            detail: {
-                artist: e.target.id
-            }
-        });
-        button1.dispatchEvent(event);
-    }
-
-    div.appendChild(button);
-
-    var clickable = L.marker([52.43821, -1.885604]).addTo(map);
-        clickable.bindPopup(div, {maxWidth: 100});
-
-    //event handler
-    document.addEventListener("openArtist", function(event) {openArtist(event);});
-
-    function openArtist(event){
-        console.log(event.detail.artist);
-        console.log(clickable.closePopup());
-        // resize map 
-    }
-        
-
-
-
-    // location not found set view to bounds
+    // user location not found set view to bounds
     map.on('locationerror', onLocationError);
 
     function onLocationError(e) {
@@ -80,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function(){
         map.setView([52.446483, -1.888168], 12);
     }
 
-    // location found add a marker
+    // user location found add a marker
     map.on('locationfound', onLocationFound);
 
     function onLocationFound(e) {
@@ -93,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     
-    // map on click gives position
+    // map on click gives position in popup
     var popup = L.popup();
     map.on('click', onMapClick);
 
@@ -114,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function(){
         // does this feature have a property named title
         const title = feature.properties.title;
 
-        // tag ids must be contiguous
+        // tag ids must be contiguous (id created from title)
         const id = title.replace(/\s+/g, "");
         
         if (title) {
@@ -124,30 +75,54 @@ document.addEventListener("DOMContentLoaded", function(){
             console.log(artists);
             var carousel = "";
             
-            // add each artists card to carousell
+            // add each artists card to carousel
             for(var i = 0; i < artists.length; i++){
                 carousel += `
                     <div class="image${i === 0 ? " active": ""}">
-                        <img src="./images/${artists[i].image}"/>
+                        <div>
+                            <img src="./images/${artists[i].image}"/>
+                        </div>
+                        <div>
+                            <h3>${artists[i].name}</h3>
+                        </div>
+                        <div id="artistText">
+                            ${artists[i].text}
+                        </div>
                     </div>
+                `
+            }
+
+            var artistNumber = "";
+            // artist or artists
+            if (artists.length > 1) {
+                artistNumber = `
+                    <h1>${title}</h1>
+                    <h4>There are ${artists.length + " "}Artists Exhibiting here</h4>
+                `
+            }
+
+            var artistCycle = "";
+            if (artists.length > 1){
+                artistCycle = `
+                <div class="cycle">
+                    <a href="#" class="prev">Previous Artist</a>
+                    <a href="#" class="next">Next Artist</a>
+                </div>
                 `
             }
             
             // construct the popup html
             var popupContent = `
                 <div id=${id} class="popup">
-                    <h1>${title}</h1>
+                    ${artistNumber}
                     <div class="carousel">
                         ${carousel}
                     </div>
-                    <div class="cycle">
-                        <a href="#" class="prev">Previous</a>
-                        <a href="#" class="next">Next</a>
-                    </div>
+                    ${artistCycle}
                 </div>
                 
             `
-            layer.bindPopup(popupContent);
+            layer.bindPopup(popupContent, {maxWidth: popupMaxWidth, minWidth: popupMaxWidth});
         }
     }
 
@@ -190,8 +165,8 @@ document.addEventListener("DOMContentLoaded", function(){
 
             // get the active image
             const carousel = document.getElementsByClassName("carousel");
-            const images = document.querySelector("div.image.active");
-
+            const images = document.querySelector("div.image.active")
+            
             if (images.previousElementSibling == null){
                 console.log("There's nothing here");
                 images.classList.remove("active");
