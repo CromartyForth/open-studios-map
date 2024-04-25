@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     // get geoJson data
-    fetch("http://localhost:5500/data/locations.json")
+    fetch("./data/locations.json")
         .then((response) => {
             if (response.status === 200) {
                 return response.json();
