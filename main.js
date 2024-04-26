@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function(){
         L.circle(e.latlng, radius).addTo(map)
     }
 
-    
+    /*
     // map on click gives position in popup
     var popup = L.popup();
     map.on('click', onMapClick);
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function(){
        map.panTo(e.latlng);
        console.log(e);
     }
-
+    */
 
     // geojason on each function
     function onEachFeature(feature, layer) {
@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 </div>
                 
             `
-            layer.bindPopup(popupContent, {maxWidth: popupMaxWidth, minWidth: popupMaxWidth});
+            layer.bindPopup(popupContent, {maxWidth: popupMaxWidth, minWidth: popupMaxWidth,});
         }
     }
 
@@ -148,7 +148,6 @@ document.addEventListener("DOMContentLoaded", function(){
     
 
     // event listeners for popup previous and next buttons
-    // popup open event. What is in it?
     map.on('popupopen', function(event){
 
         // properties of popup
