@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function(){
             var img = L.DomUtil.create("img");
 
             img.src = "./images/BOP-2019-LOGO-200px.png";
-            img.style.width = "200px";
+            img.style.width = "100px";
 
             return img;
         },
