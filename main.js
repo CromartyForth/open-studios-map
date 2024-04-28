@@ -24,6 +24,33 @@ document.addEventListener("DOMContentLoaded", function(){
     }).addTo(map);
     
 
+
+    // the watermark
+
+    L.Control.Watermark = L.Control.extend({
+        onAdd: function(map) {
+            var img = L.DomUtil.create("img");
+
+            img.src = "./images/BOP-2019-LOGO-200px.png";
+            img.style.width = "200px";
+
+            return img;
+        },
+
+        onRemove: function(map){
+            // nothing here yet
+        }
+    });
+
+    L.control.watermark = function(opts) {
+
+        return new L.Control.Watermark(opts);
+
+    }
+
+    var watermark = L.control.watermark({position:"bottomleft"}).addTo(map);
+    
+
     // user location not found set view to bounds
     map.on('locationerror', onLocationError);
 
@@ -155,6 +182,14 @@ document.addEventListener("DOMContentLoaded", function(){
         var Id = title.replace(/\s+/g, "");
         console.log(Id);
         document.getElementById(Id).addEventListener("click", (event) => popupClick(event, Id));
+
+        // remove controls
+        watermark.remove();
+    })
+
+    map.on('popupclose', function(event){
+        // add controls
+        watermark.addTo(map);
     })
 
     function popupClick(event, Id) {
