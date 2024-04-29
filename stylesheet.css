@@ -5,6 +5,7 @@ body {
 
 html, body, #map {
     height: 100%;
+    height: -webkit-fill-available;
     width: 100vw;
 }
 
