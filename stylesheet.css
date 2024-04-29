@@ -13,7 +13,7 @@ html, body, #map {
 }
 
 .container {
-    position: relative;
+    position: absolute;
     height:100%;
     width: 100vw;
 }
